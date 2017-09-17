@@ -6,4 +6,4 @@ Card Capture allows you to keep track of all your trading cards with ease!
 ### Copy into console: 
 `Install-Package Microsoft.EntityFrameworkCore.Tools<br>
 Add-Migration Initial<br>
-Update-Database<br>' 
+Update-Database<br>`
