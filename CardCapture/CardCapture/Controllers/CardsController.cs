@@ -6,67 +6,65 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CardCapture.Models;
-using MvcMovie.Models;
-using System.Globalization;
 
 namespace CardCapture.Controllers
 {
-    public class MoviesController : Controller
+    public class CardsController : Controller
     {
         private readonly CardCaptureContext _context;
 
-        public MoviesController(CardCaptureContext context)
+        public CardsController(CardCaptureContext context)
         {
             _context = context;
         }
 
-        // GET: Movies
+        // GET: Cards
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            return View(await _context.Card.ToListAsync());
         }
 
-        // GET: Movies/Details/5
+        // GET: Cards/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
-            }   
+            }
 
-            var movie = await _context.Movie
+            var card = await _context.Card
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (movie == null)
+            if (card == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(card);
         }
 
-        // GET: Movies/Create
+        // GET: Cards/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: Cards/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("ID,Name,Text,Card_Type,Type,Family,Atk,Def,Level,Property")] Card card)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
+                _context.Add(card);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(card);
         }
 
-        // GET: Movies/Edit/5
+        // GET: Cards/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +72,22 @@ namespace CardCapture.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.ID == id);
-            if (movie == null)
+            var card = await _context.Card.SingleOrDefaultAsync(m => m.ID == id);
+            if (card == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            return View(card);
         }
 
-        // POST: Movies/Edit/5
+        // POST: Cards/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Text,Card_Type,Type,Family,Atk,Def,Level,Property")] Card card)
         {
-            if (id != movie.ID)
+            if (id != card.ID)
             {
                 return NotFound();
             }
@@ -98,12 +96,12 @@ namespace CardCapture.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
+                    _context.Update(card);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.ID))
+                    if (!CardExists(card.ID))
                     {
                         return NotFound();
                     }
@@ -114,10 +112,10 @@ namespace CardCapture.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(card);
         }
 
-        // GET: Movies/Delete/5
+        // GET: Cards/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +123,30 @@ namespace CardCapture.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var card = await _context.Card
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (movie == null)
+            if (card == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(card);
         }
 
-        // POST: Movies/Delete/5
+        // POST: Cards/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Movie.Remove(movie);
+            var card = await _context.Card.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Card.Remove(card);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MovieExists(int id)
+        private bool CardExists(int id)
         {
-            return _context.Movie.Any(e => e.ID == id);
+            return _context.Card.Any(e => e.ID == id);
         }
     }
 }

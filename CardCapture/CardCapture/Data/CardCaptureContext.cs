@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MvcMovie.Models;
+using CardCapture.Models;
 
 namespace CardCapture.Models
 {
@@ -14,6 +14,8 @@ namespace CardCapture.Models
         {
         }
 
-        public DbSet<MvcMovie.Models.Movie> Movie { get; set; }
+        public DbSet<CardCapture.Models.Collection> Collection { get; set; }
+
+        public DbSet<CardCapture.Models.Card> Card { get; set; }
     }
 }

@@ -11,9 +11,10 @@ using System;
 namespace CardCapture.Migrations
 {
     [DbContext(typeof(CardCaptureContext))]
-    partial class CardCaptureContextModelSnapshot : ModelSnapshot
+    [Migration("20171002121057_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
