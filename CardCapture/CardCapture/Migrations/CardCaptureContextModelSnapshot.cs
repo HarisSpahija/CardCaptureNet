@@ -66,6 +66,32 @@ namespace CardCapture.Migrations
                     b.ToTable("Collection");
                 });
 
+            modelBuilder.Entity("CardCapture.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Admin");
+
+                    b.Property<string>("City");
+
+                    b.Property<int?>("CollectionID");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Password");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CollectionID");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("CardCapture.Models.Collection", b =>
                 {
                     b.HasOne("CardCapture.Models.Card", "CardID")
@@ -75,6 +101,13 @@ namespace CardCapture.Migrations
                     b.HasOne("CardCapture.Models.Card", "Name")
                         .WithMany()
                         .HasForeignKey("NameID");
+                });
+
+            modelBuilder.Entity("CardCapture.Models.User", b =>
+                {
+                    b.HasOne("CardCapture.Models.Collection", "Collection")
+                        .WithMany()
+                        .HasForeignKey("CollectionID");
                 });
 #pragma warning restore 612, 618
         }

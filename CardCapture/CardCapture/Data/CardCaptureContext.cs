@@ -17,5 +17,7 @@ namespace CardCapture.Models
         public DbSet<CardCapture.Models.Collection> Collection { get; set; }
 
         public DbSet<CardCapture.Models.Card> Card { get; set; }
+
+        public DbSet<CardCapture.Models.User> User { get; set; }
     }
 }
