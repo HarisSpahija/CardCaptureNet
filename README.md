@@ -1,3 +1,7 @@
+# Project scrapped due User Authentication!. New Git will be posted soon.
+
+
+
 # CardCaptureNet
 Card Capture allows you to keep track of all your trading cards with ease!
 
